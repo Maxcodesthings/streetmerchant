@@ -1,11 +1,12 @@
-import {config} from '../config';
-import {sendDMAndGetResponseAsync as getWithDiscord} from './discord';
-import {sendDMAndGetResponseAsync as getWithSlack} from './slack';
-import {DMPayload} from '.';
+import { config } from '../config';
+import { sendDMAndGetResponseAsync as getWithDiscord } from './discord';
+import { getResponseAsync as getWithAuto } from './auto';
+import { sendDMAndGetResponseAsync as getWithSlack } from './slack';
+import { DMPayload } from '.';
 
 export type CaptchaPayload = DMPayload; // for now this is a 1:1 alias
 
-const {service} = config.captchaHandler;
+const { service } = config.captchaHandler;
 
 /**
  * Picks the service that will handle the user interaction
@@ -20,6 +21,8 @@ export async function getCaptchaInputAsync(
   timeout?: number
 ): Promise<string> {
   switch (service) {
+    case 'auto':
+      return await getWithAuto(payload);
     case 'discord':
       return await getWithDiscord(payload, timeout);
     case 'slack':

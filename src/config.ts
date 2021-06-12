@@ -1,5 +1,5 @@
-import {existsSync, readFileSync} from 'fs';
-import {banner} from './banner';
+import { existsSync, readFileSync } from 'fs';
+import { banner } from './banner';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -11,14 +11,14 @@ if (process.env.npm_config_conf) {
       path: path.resolve(__dirname, '../../' + process.env.npm_config_conf),
     });
   } else {
-    dotenv.config({path: path.resolve(__dirname, '../../.env')});
+    dotenv.config({ path: path.resolve(__dirname, '../../.env') });
   }
 } else if (existsSync(path.resolve(__dirname, '../../dotenv'))) {
-  dotenv.config({path: path.resolve(__dirname, '../../dotenv')});
+  dotenv.config({ path: path.resolve(__dirname, '../../dotenv') });
 } else if (existsSync(path.resolve(__dirname, '../dotenv'))) {
-  dotenv.config({path: path.resolve(__dirname, '../dotenv')});
+  dotenv.config({ path: path.resolve(__dirname, '../dotenv') });
 } else {
-  dotenv.config({path: path.resolve(__dirname, '../../.env')});
+  dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 }
 
 console.info(
@@ -210,6 +210,8 @@ const captchaHandler = {
   service: envOrString(process.env.CAPTCHA_HANDLER_SERVICE),
   token: envOrString(process.env.CAPTCHA_HANDLER_TOKEN),
   userId: envOrString(process.env.CAPTCHA_HANDLER_USER_ID),
+  autoHost: envOrString(process.env.CAPTCHA_HANDLER_AUTO_HOST),
+  autoPort: envOrString(process.env.CAPTCHA_HANDLER_AUTO_PORT)
 };
 
 const docker = envOrBoolean(process.env.DOCKER, false);
