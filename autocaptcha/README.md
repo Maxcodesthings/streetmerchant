@@ -14,9 +14,12 @@ CAPTCHA_HANDLER_SERVICE=auto
 CAPTCHA_HANDLER_AUTO_HOST=localhost
 CAPTCHA_HANDLER_AUTO_PORT=8000
 ```
-Configure host and port to where you plan on hosting this python web service. Streetmerchant will send web request to this service to help it solve captcha
+Configure host and port to where you plan on hosting this python web service. Streetmerchant will send web request to this endpoint to solve the captcha
 
-Start Gunicorn server with `./run.sh`
+### Without Docker
+1. Install python3
+2. Install dependencies `pip install -r requirements.txt`
+3. Start Gunicorn server with `./run.sh`
 
 ### Using Docker
 1. Build image `docker build -t flask/autocaptcha .`
